@@ -4,7 +4,9 @@ Projet prise en main de symfony, lire le instructions.md pour les informations c
 Identifiants admin (après fixture:load)
 
 username : Red
+
 email (identifiant) : Red@bourg-palette.com
+
 password : bourg-palette
 
 Pour le moindre problème après installation du projet, n'hésitez pas à me contacter.
