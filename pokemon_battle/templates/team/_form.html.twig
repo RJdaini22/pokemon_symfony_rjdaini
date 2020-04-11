@@ -1,0 +1,22 @@
+
+{{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_row(form.nickname, {'label': 'Surnom'}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.pokemon, {'label': 'Pokemon'}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.trainer, {'label': 'Dresseur'}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.attacks, {'label': 'Attaque'}) }}
+            </div>
+
+            <button class="btn btn btn-primary">{{ button_label|default('Sauvegarder') }}</button>
+        {{ form_end(form) }}
+    

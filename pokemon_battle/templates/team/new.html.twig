@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle team{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Créer un Pokemon</h3>
+    <br/>
+
+    {{ include('team/_form.html.twig') }}
+    </br>
+
+    <a href="{{ path('team_index') }}"><button type="button" class="btn btn-danger">Retour</button></a>
+{% endblock %}

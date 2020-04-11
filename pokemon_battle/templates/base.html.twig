@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    <script>
+    $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable #trpokemon").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+    });
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    
+    
+    <a class="navbar-brand" href="{{ path('skeleton_home') }}"><h1><img src="{{asset('images/pokeball_logo.png')}}" height="60"> Pokemon Center </h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+
+                    {% if not app.user %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('security_registration') }}"><button type="button" class="btn btn-primary">Inscription</button> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('security_login') }}"><button type="button" class="btn btn-primary">Connexion</button></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('skeleton_trainer') }}"><button type="button" class="btn btn-primary">{{ app.user.username }}</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('security_logout') }}"><button type="button" class="btn btn-danger">Déconnexion</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('skeleton_balls') }}"><button type="button" class="btn btn-primary">Balls</button></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <a class="nav-link" href="{{ path('skeleton_pokemons') }}"><button type="button" class="btn btn-primary">Pokemons</button></a>
+                        <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
+                                <a class="dropdown-item" href="{{ path('skeleton_fire_type') }}">Feu</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_water_type') }}">Eau</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_grass_type') }}">Plante</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_bug_type') }}">Insecte</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_fly_type') }}">Vol</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_normal_type') }}">Normal</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_poison_type') }}">Poison</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_electrik_type') }}">Electrik</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_ground_type') }}">Sol</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_fighting_type') }}">Combat</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_psy_type') }}">Psy</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_rock_type') }}">Roche</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_steel_type') }}">Acier</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_ice_type') }}">Glace</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_ghost_type') }}">Spectre</a>
+                                <a class="dropdown-item" href="{{ path('skeleton_dragon_type') }}">Dragon</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('skeleton_potions') }}"><button type="button" class="btn btn-primary">Potions</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('skeleton_attacks') }}"><button type="button" class="btn btn-primary">Attaques</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('team_index') }}"><button type="button" class="btn btn-primary">Teams</button></a>
+                    </li>
+                    <li class="nav-item">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-link" href="{{ path('skeleton_all_trainers') }}"><button type="button" class="btn btn-primary">Dresseurs</button></a>
+                    {% endif %}
+                    </li>
+                    <li class="nav-item">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-link" href="{{ path('administration') }}"><button type="button" class="btn btn-primary">Admin</button></a>
+                    {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Recherche...">
+                </form>
+                {% endif %}
+            </div>
+        </nav>
+        
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
+

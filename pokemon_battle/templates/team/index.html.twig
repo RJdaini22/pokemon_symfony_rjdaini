@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Présentation des teams</h3>
+    <br/>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dresseur</th>
+                <th>Surnom</th>
+                <th>Pokemon</th>
+                <th>Attaque</th>
+                <th>Type</th>
+                <th>Sprite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr id="trpokemon">
+                <td>{{ team.id }}</td>
+                <td>{{ team.trainer }}</td>
+                <td>{{ team.nickname }}</td>
+                <td>{{ team.pokemon }}</td>
+                <td>{% for attacks in team.attacks %}
+                        <li>{{ attacks }}</li>
+                    {% else %}
+                        <li>aucune attaque</li>
+                    {% endfor %}
+                </td>
+                <td><img src="{{ asset( 'types/' ~ team.pokemon.type ~ '.png') }}"/></td>
+                <td><img src="{{ asset( 'sprites/' ~ team.pokemon ~ '.png') }}"/></td>
+                <td>
+                    <a href="{{ path('team_show', {'id': team.id}) }}"><button type="button" class="btn btn-primary">Montrer</button></a>
+                    <a href="{{ path('team_edit', {'id': team.id}) }}"><button type="button" class="btn btn-primary">Editer</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">aucun pokemons trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('team_new') }}"><button type="button" class="btn btn-primary">Créer un nouveau pokemon</button></a>
+{% endblock %}

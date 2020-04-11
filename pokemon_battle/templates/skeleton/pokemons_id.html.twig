@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage Pokemon{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Affichage du Pokemon</h3>
+    <br/>
+    
+   
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>HP</th>
+                <th>Type</th>
+                <th>Nature</th>
+                <th>Description</th>
+                <th>Attaque</th>
+                <th>Sprite</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for pokemon in pokemons %}
+            <tr id="trpokemon">
+                <td>{{ pokemon.id }}</td>
+                <td>{{ pokemon.name }}</td>
+                <td>{{ pokemon.hp }}</td>
+                <td><img src="{{ asset( 'types/' ~ pokemon.type ~ '.png') }}"/></td>
+                <td>{{ pokemon.nature }}</td>
+                <td>{{ pokemon.description }}</td>
+                <td>{% for attacks in pokemon.attacks %}
+                        <li>{{ attacks }}</li>
+                    {% else %}
+                        <li>aucune attaque</li>
+                    {% endfor %}
+                </td>
+                <td><img src="{{ asset( 'sprites/' ~ pokemon.name ~ '.png') }}"/></td>
+                <td><a href="{{ path('skeleton_pokemons') }}"><button type="button" class="btn btn-danger">Retour</button></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">affichage échoué</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

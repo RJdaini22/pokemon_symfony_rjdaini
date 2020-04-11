@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Bienvenue nouveau dresseur !</h3>
+    <br/>
+
+<div class="example-wrapper">
+    <h5>Qu'est-ce que le Pokemon Center ?</h5>
+    <ul>
+        <li>Un projet symfony développé par Ryan Jdaini - Le Hô</li>
+        <li>Un pokedex interactif complètement développé avec le framework symfony</li>
+    </ul>
+    <br/>
+    <h5>Plus qu'une chose à dire !</h5>
+    <br/>
+    <img src="{{asset('images/pokedex.png')}}" height="150">
+    <br/>
+    <br/>
+    <h5>Bonne exploration !</h5>
+</div>
+{% endblock %}

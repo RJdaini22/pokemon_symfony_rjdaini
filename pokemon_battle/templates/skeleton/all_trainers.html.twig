@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dresseurs{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Présentation des dresseurs inscrits</h3>
+    <br/>
+    
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trainer in trainers %}
+            <tr id="trpokemon">
+                <td>{{ trainer.id }}</td>
+                <td>{{ trainer.username }}</td>
+                <td>{{ trainer.email }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">pas de dresseurs trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Attaques{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Présentation des attaques</h3>
+    <br/>
+    
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Puissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attack in attacks %}
+            <tr id="trpokemon">
+                <td>{{ attack.id }}</td>
+                <td>{{ attack.name }}</td>
+                <td><img src="{{ asset( 'types/' ~ attack.type ~ '.png') }}"/></td>
+                <td>{{ attack.description }}</td>
+                <td>{{ attack.power }}</td>
+                <td><a href="attacks/{{attack.id}}"><button type="button" class="btn btn-primary">Montrer</button></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">pas d'attaques trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

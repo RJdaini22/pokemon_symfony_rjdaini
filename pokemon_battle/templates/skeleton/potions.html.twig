@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Potions{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Présentation des potions</h3>
+    <br/>
+    
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Puissance</th>
+                <th>Description</th>
+                <th>Sprite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for potion in potions %}
+            <tr id="trpokemon">
+                <td>{{ potion.id }}</td>
+                <td>{{ potion.name }}</td>
+                <td>{{ potion.power }}</td>
+                <td>{{ potion.description }}</td>
+                <td><img src="{{ asset( 'potions/' ~ potion.name ~ '.png') }}"/></td>
+                <td><a href="potions/{{potion.id}}"><button type="button" class="btn btn-primary">Montrer</button></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">pas de potions trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage d'un pokemon{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Affichage d'un Pokemon</h3>
+    <br/>
+
+    <th>Id</th>
+                <th>Dresseur</th>
+                <th>Surnom</th>
+                <th>Pokemon</th>
+                <th>Attaque</th>
+                <th>Type</th>
+                <th>Sprite</th>
+                <th>Actions</th>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ team.id }}</td>
+            </tr>
+            <tr>
+                <th>Surnom</th>
+                <td>{{ team.nickname }}</td>
+            </tr>
+            <tr>
+                <th>Pokemon</th>
+                <td>{{ team.pokemon }}</td>
+            </tr>
+            <tr>
+                <th>Attaque</th>
+                <td>{% for attacks in team.attacks %}
+                        <li>{{ attacks }}</li>
+                    {% else %}
+                        <li>aucune attaque</li>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td><img src="{{ asset( 'types/' ~ team.pokemon.type ~ '.png') }}"/></td>
+            </tr>
+            <tr>
+                <th>Sprite</th>
+                <td><img src="{{ asset( 'sprites/' ~ team.pokemon ~ '.png') }}"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('team_index') }}"><button type="button" class="btn btn-danger">Retour</button></a>
+
+    <a href="{{ path('team_edit', {'id': team.id}) }}"><button type="button" class="btn btn-primary">Editer</button></a>
+    </br>
+    </br>
+
+    {{ include('team/_delete_form.html.twig') }}
+{% endblock %}

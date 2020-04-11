@@ -1,0 +1,8 @@
+index:
+    path: /
+    controller: App\Controller\SkeletonController::index
+
+administration:
+    path: /admin
+
+

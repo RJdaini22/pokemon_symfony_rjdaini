@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage ball{% endblock %}
+
+{% block body %}
+<br/>
+    <h3>Affichage d'une balls</h3>
+    <br/>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Sprite</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ball in balls %}
+            <tr id="trpokemon">
+                <td>{{ ball.id }}</td>
+                <td>{{ ball.name }}</td>
+                <td>{{ ball.description }}</td>
+                <td><img src="{{ asset( 'balls/' ~ ball.name ~ '.png') }}"/></td>
+                <td><a href="{{ path('skeleton_balls') }}"><button type="button" class="btn btn-danger">Retour</button></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">pas de balls trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
