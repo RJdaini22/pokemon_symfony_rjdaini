@@ -15,3 +15,5 @@ URL d'accès pour un localhost : http://localhost/pokemon_battle/public/index.ph
 
 Pour conserver l'affichage des sprites 
 veuillez ne pas modifier les noms des pokemons, des types, des potions et des balls.
+
+Illustrations codepen.io par : Tee Diang @cybercountess
