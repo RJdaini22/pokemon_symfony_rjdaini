@@ -1,4 +1,4 @@
-# pokemon_symfony_rjaini
+# pokemon_symfony_rjdaini
 Projet prise en main de symfony, lire le instructions.md pour les informations concernant le projet
 
 Identifiants admin (après fixture:load)
